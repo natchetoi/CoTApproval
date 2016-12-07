@@ -1,26 +1,19 @@
-<mvc:View controllerName="cot.controller.Master" displayBlock="true" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="cot.controller.Master" displayBlock="true">
 	<Page id="page" title="{i18n>masterTitle}">
 		<headerContent>
-			<core:Icon id="masterIcon" src="sap-icon://alert" visible="{device>/isOffline}"></core:Icon>
+			<core:Icon id="masterIcon" src="sap-icon://alert" visible="{device>/isOffline}"/>
 		</headerContent>
 		<subHeader>
 			<Bar id="searchBar">
 				<contentMiddle>
-					<SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" search="onSearch"
-						tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>
+					<SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" search="onSearch" tooltip="{i18n>masterSearchTooltip}" width="100%"/>
 				</contentMiddle>
 			</Bar>
 		</subHeader>
 		<content>
-			<List id="list" items="{/ApprovalReqSet}" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" select="onSelect"
-				growing="true" growingScrollToLoad="true">
+			<List id="list" items="{/ApprovalReqSet}" select="onSelect" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" headerText="Requests">
 				<items>
-					<StandardListItem type="{device>/listItemType}" press="onSelect" 
-					title="{approvalSubject}"
-					description="{ApprovalSummary}"
-					icon="{images/CAB.png}"
-					iconDensityAware="false"
-					iconInset="false"  >
+					<StandardListItem type="{device>/listItemType}" press="onSelect" title="{approvalSubject}" detailPress="onSelect">
 					</StandardListItem>
 				</items>
 			</List>
@@ -28,9 +21,8 @@
 		<footer>
 			<Toolbar>
 				<content>
-					<Button icon="sap-icon://error" text="{device>/errorNum}" visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}"
-						press="onErrorPress"/>
-					<Button icon="sap-icon://refresh" press="refreshData"></Button>
+					<Button icon="sap-icon://error" text="{device>/errorNum}" visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}" press="onErrorPress"/>
+					<Button icon="sap-icon://refresh" press="refreshData"/>
 					<ToolbarSpacer/>
 					<!-- Button icon="sap-icon://add" press="addItem"></Button -->
 				</content>
