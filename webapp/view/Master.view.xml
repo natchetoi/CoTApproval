@@ -21,6 +21,12 @@
 						iconInset="false" 
 					>
 					</StandardListItem>
+					<InputListItem label="Act"  visible="false" >
+						<content>
+							<Button text="Deny" press="deny" />
+							<Button text="Approve" press="approve"   />
+						</content>
+					</InputListItem>
 				</items>
 			</List>
 		</content>

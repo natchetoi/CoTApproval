@@ -340,6 +340,14 @@ sap.ui.define([
 		onErrorPress: function() {
 			var oEventBus = this.getEventBus();
 			oEventBus.publish("OfflineStore", "OpenErrDialog");
+		},
+		
+		approve: function() {
+			
+		},
+		
+		deny: function() {
+			
 		}
 	});
 });
