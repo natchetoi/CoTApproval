@@ -1,0 +1,11 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="cot.controller.Splash">
+	<App>
+		<pages>
+			<Page title="Title">
+				<content>
+				    <Image width="140px" height="140px" id="__image0" press="onPress" src="images/splash.png"/>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
