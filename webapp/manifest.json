@@ -85,7 +85,7 @@
 			},
 			"routes": [{
 				"pattern": "",
-				"name": "main",
+				"name": "Master",
 				"view": "Master",
 				"targetAggregation": "masterPages",
 				"targetControl": "idAppControl",
@@ -101,9 +101,9 @@
 				"targetAggregation": "masterPages",
 				"targetControl": "idAppControl",
 				"subroutes": [{
-					"pattern": ":all*:",
-					"name": "catchallDetail",
-					"view": "NotFound",
+					"pattern": "Master",
+					"name": "Master",
+					"view": "Master",
 					"transition": "show"
 				}]
 			}, {
@@ -117,7 +117,28 @@
 					"view": "NotFound",
 					"transition": "show"
 				}]
-			}]
+			}],
+			"targets": {
+				"Master": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Master",
+					"title": "Master",
+					"viewLevel": 1,
+					"viewId": "Master"
+				},
+				"Detail": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Detail",
+					"title": "Detail",
+					"viewId": "Detail",
+					"viewLevel": 2,
+					"controlId": "idAppControl"
+				}
+			}
 		}
 	},
 	"sap.mobile": {

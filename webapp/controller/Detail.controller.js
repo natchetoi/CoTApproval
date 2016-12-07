@@ -300,20 +300,20 @@ sap.ui.define([
 					page.removeAllContent();
 					page.addContent(this._detailCreateMode);
 				}
-				view.byId("saveButton").setVisible(true);
-				view.byId("cancelButton").setVisible(true);
-				view.byId("editButton").setVisible(false);
-				view.byId("deleteButton").setVisible(false);
+//				view.byId("saveButton").setVisible(true);
+//				view.byId("cancelButton").setVisible(true);
+//				view.byId("editButton").setVisible(false);
+//				view.byId("deleteButton").setVisible(false);
 			} else if (sMode === "edit") {
 				this._fragmentName = this._detailEditModeFragmentName;
 				if (page.getContent()[0] !== this._detailEditMode) {
 					page.removeAllContent();
 					page.addContent(this._detailEditMode);
 				}
-				view.byId("saveButton").setVisible(true);
-				view.byId("cancelButton").setVisible(true);
-				view.byId("editButton").setVisible(false);
-				view.byId("deleteButton").setVisible(false);
+//				view.byId("saveButton").setVisible(true);
+//				view.byId("cancelButton").setVisible(true);
+//				view.byId("editButton").setVisible(false);
+//				view.byId("deleteButton").setVisible(false);
 			} else {
 				this._sMode = sMode;
 				this._fragmentName = this._detailReadModeFragmentName;
@@ -321,10 +321,10 @@ sap.ui.define([
 					page.removeAllContent();
 					page.addContent(this._detailReadMode);
 				}
-				view.byId("saveButton").setVisible(false);
-				view.byId("cancelButton").setVisible(false);
-				view.byId("editButton").setVisible(true);
-				view.byId("deleteButton").setVisible(true);
+//				view.byId("saveButton").setVisible(false);
+//				view.byId("cancelButton").setVisible(false);
+//				view.byId("editButton").setVisible(true);
+//				view.byId("deleteButton").setVisible(true);
 			}
 		},
 

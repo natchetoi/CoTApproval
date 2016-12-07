@@ -11,9 +11,15 @@
 			</Bar>
 		</subHeader>
 		<content>
-			<List id="list" items="{/ApprovalReqSet}" select="onSelect" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" headerText="Requests">
+			<List id="list" items="{/ApprovalReqSet}" select="onSelect" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" >
 				<items>
-					<StandardListItem type="{device>/listItemType}" press="onSelect" title="{approvalSubject}" detailPress="onSelect">
+					<StandardListItem type="{device>/listItemType}" press="onSelect" detailPress="onAction" 
+						title="{approvalSubject}" 
+						description="{ApprovalSummary}"
+						icon="images/CAB.png"
+						iconDensityAware="false"
+						iconInset="false" 
+					>
 					</StandardListItem>
 				</items>
 			</List>

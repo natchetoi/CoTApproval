@@ -186,6 +186,25 @@ sap.ui.define([
 				this.showDetail(item);
 			}
 		},
+		
+		onAction: function(oEvent) {
+			// Get the list item, either from the listItem parameter or from the event's
+			// source itself (will depend on the device-dependent mode).
+			var model = this.getView().getModel();
+			var list = this.getView().byId("list");
+			var item = oEvent.getParameter("listItem") || oEvent.getSource();
+			if (model.hasPendingChanges() || model.newEntryContext) {
+				this.openCancelConfirmDialog();
+				this._onConfirmAction = jQuery.proxy(function() {
+					this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
+					this.showDetail(item);
+				}, this);
+			} else {
+				this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
+				this.showDetail(item);
+			}
+		},
+
 
 		/**
 		 * Shows the selected item on the detail page
