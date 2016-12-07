@@ -15,7 +15,13 @@
 			<List id="list" items="{/ApprovalReqSet}" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" select="onSelect"
 				growing="true" growingScrollToLoad="true">
 				<items>
-					<ObjectListItem type="{device>/listItemType}" press="onSelect" title="{approvalSubject}" number="{approver}" numberUnit="{approvalType}"></ObjectListItem>
+					<StandardListItem type="{device>/listItemType}" press="onSelect" 
+					title="{approvalSubject}"
+					description="{ApprovalSummary}"
+					icon="{images/CAB.png}"
+					iconDensityAware="false"
+					iconInset="false"  >
+					</StandardListItem>
 				</items>
 			</List>
 		</content>
@@ -26,7 +32,7 @@
 						press="onErrorPress"/>
 					<Button icon="sap-icon://refresh" press="refreshData"></Button>
 					<ToolbarSpacer/>
-					<Button icon="sap-icon://add" press="addItem"></Button>
+					<!-- Button icon="sap-icon://add" press="addItem"></Button -->
 				</content>
 			</Toolbar>
 		</footer>

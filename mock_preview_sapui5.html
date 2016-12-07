@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head><script src="/resources/sap-ui-core.js"	id="sap-ui-bootstrap" data-sap-ui-libs="sap.ui.commons"></script>
+<script>
+var bRunWithMock = true;
+var sRunWithMock = jQuery.sap.getUriParameters().get('run-with-mock');
+if (sRunWithMock === 'false') {
+bRunWithMock = false;
+}
+if (bRunWithMock) {
+jQuery.sap.require('sap.ui.core.util.MockServer');
+var uri = '/here/goes/your/serviceurl/';
+var oMock = new sap.ui.core.util.MockServer({rootUri : uri});
+var _sAppModulePath = "cot/";
+var sMetadataPath = "localService/metadata.xml";
+var sMetadataUrl = jQuery.sap.getModulePath(_sAppModulePath + sMetadataPath.replace(".xml", ""), ".xml");
+var sMockdataBaseUrlPath = sMetadataUrl.replace(/[^/]+$/, 'mockdata');
+oMock.simulate(sMetadataUrl, { sMockdataBaseUrl : sMockdataBaseUrlPath, bGenerateMissingMockData : true });
+oMock.start();
+	jQuery(document).ready(function($) {  sap.m.MessageToast.show('Running in demo mode with mock data.', {  duration : 4000 });
+});
+}
+</script>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="url=webapp/index.html">
+        <script type="text/javascript">
+            window.location.href = "webapp/index.html"
+        </script>
+        <title>Page Redirection</title>
+    </head>
+    <body>
+        <!-- Note: don't tell people to `click` the link, just tell them that it is a link. -->
+        If you are not redirected automatically, follow the <a href='webapp/index.html'>link to example</a>
+    </body>
+</html>

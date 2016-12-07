@@ -11,9 +11,9 @@
 					<ToolbarSpacer id="toolbarSpacer"/>
 					<Button text="Reject" width="100px" id="__button1" icon="sap-icon://decline" type="Reject"/>
 					<Button text="Approve" width="100px" id="__button0" icon="sap-icon://accept" type="Accept"/>
-					<Button id="saveButton" press="saveChanges" icon="sap-icon://save"/>
+					<!-- Button id="saveButton" press="saveChanges" icon="sap-icon://save"/>
 					<Button id="deleteButton" press="deleteItem" icon="sap-icon://delete"/>
-					<Button id="editButton" press="editItem" icon="sap-icon://edit"/>
+					<Button id="editButton" press="editItem" icon="sap-icon://edit"/  -->
 				</content>
 			</Toolbar>
 		</footer>
