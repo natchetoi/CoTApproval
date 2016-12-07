@@ -4,6 +4,11 @@
       "templateId": "fioritemplate.UI5masterDetailKapselOffline",
       "templateVersion": "1.32.4",
       "dateTimeStamp": "Thu, 10 Nov 2016 22:13:06 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 07 Dec 2016 18:49:43 GMT"
     }
   ],
   "mockpreview": {

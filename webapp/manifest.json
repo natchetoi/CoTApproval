@@ -95,6 +95,18 @@
 					"view": "Detail"
 				}]
 			}, {
+				"pattern": "Login",
+				"name": "Login",
+				"view": "Login",
+				"targetAggregation": "masterPages",
+				"targetControl": "idAppControl",
+				"subroutes": [{
+					"pattern": ":all*:",
+					"name": "catchallDetail",
+					"view": "NotFound",
+					"transition": "show"
+				}]
+			}, {
 				"name": "catchallMaster",
 				"view": "Master",
 				"targetAggregation": "masterPages",

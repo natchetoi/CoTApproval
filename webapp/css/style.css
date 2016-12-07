@@ -1,3 +1,51 @@
 .spacerTop {
     margin-top: 2rem;
 }
+
+.coTLoginView {
+    background-image: url("../Images/login2.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 100% 100%;
+}
+
+.coTUserName {
+    position: fixed;
+    padding: 2em;
+    top: 53%;
+}
+.coTPasswordLabel {
+    color: white;
+    position: fixed;
+    padding: 2em;
+    top: 65%;
+}
+.coTPassword {
+    position: fixed;
+    padding: 2em;
+    top: 68%;
+}
+.coTRememberMeLabel {
+    color: white;
+    position: fixed;
+    padding: 2em;
+    left: 3%;
+    width: "40%";
+    top: 80%;
+}
+.coTRememberMe {
+    color: white;
+    position: fixed;
+    top: 79%;
+    left: 5%;
+}
+.coTRememberMe label {
+    color: white;
+    top: 77%;
+}
+.coTLoginButton {
+    position: fixed;
+    padding: 2em;
+    left: 25%;
+    top: 85%;
+}
