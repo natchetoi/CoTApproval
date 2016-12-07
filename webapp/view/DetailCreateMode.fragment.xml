@@ -1,0 +1,30 @@
+<core:FragmentDefinition height="100%" width="100%" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Panel>
+		<content>
+			<f:SimpleForm id="iconTabFilter1form" minWidth="1024" editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3"
+				emptySpanL="4" emptySpanM="4" columnsL="1">
+				<f:content>
+					<Label id="label1" text="requester"></Label>
+					<Input id="input1" value="{requester}"></Input>
+					<Label id="label2" text="approvalSubject"></Label>
+					<Input id="input2" value="{approvalSubject}"></Input>
+					<Label id="label3" text="approver"></Label>
+					<Input id="input3" value="{approver}"></Input>
+					<Label id="label4" text="approvalId"></Label>
+					<Input id="input4" value="{approvalId}"></Input>
+					<Label id="label5" text="ApprovalSummary"></Label>
+					<Input id="input5" value="{ApprovalSummary}"></Input>
+					<Label id="label6" text="approvalType"></Label>
+					<Input id="input6" value="{approvalType}"></Input>
+					<Label id="label7" text="approvalStatus"></Label>
+					<Input id="input7" value="{approvalStatus}"></Input>
+					<Label id="label8" text="errorCode"></Label>
+					<Input id="input8" value="{errorCode}"></Input>
+					<Label id="label9" text="errorDescription"></Label>
+					<Input id="input9" value="{errorDescription}"></Input>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

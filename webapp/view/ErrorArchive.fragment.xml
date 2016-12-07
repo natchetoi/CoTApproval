@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog contentWidth="100%" contentHeight="100%" showHeader="false">
+		<content>
+			<NavContainer id="errorNav">
+				<Page id="errMaster" title="{i18n>errorTitle}">
+					<List id="list" items="{/ErrorArchive}" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" select="onNavtoErrDetail"
+						growing="true" growingScrollToLoad="true">
+						<items>
+							<StandardListItem title="{parts:[{path:'RequestMethod'}], formatter:'.onFormatTitle'}" type="{device>/listItemType}"
+								press="onNavtoErrDetail" description="{Message}"></StandardListItem>
+						</items>
+					</List>
+					<footer>
+						<Toolbar id="errorMasterToolbar">
+							<content>
+								<Button id="deleteButton" press="onDeleteErrRecord" icon="sap-icon://delete"
+									visible="{parts:[{path:'device>/errorNum'}], formatter:'.onDelBTVisible'}"></Button>
+								<ToolbarSpacer/>
+								<Button id="closeButton" text="Close" press="onErrDlgClose"></Button>
+							</content>
+						</Toolbar>
+					</footer>
+				</Page>
+				<Page id="errorDetail" showNavButton="true" navButtonPress="onErrorNavBack" title="{i18n>errorDetailTitle}">
+					<VBox class="sapUiSmallMarginBeginEnd">
+						<Text class="sapUiTinyMarginTop" text="Domain: {Domain}"/>
+						<Text class="sapUiTinyMarginTop" text="CustomTag: {CustomTag}"/>
+						<Text class="sapUiTinyMarginTop" text="InnerError: {InnerError}"/>
+						<Text class="sapUiTinyMarginTop" text="Code: {Code}"/>
+						<Text class="sapUiTinyMarginTop" text="RequestURL: {RequestURL}"/>
+						<Text class="sapUiTinyMarginTop" text="RequestMethod: {RequestMethod}"/>
+						<Text class="sapUiTinyMarginTop" text="RequestBody: {RequestBody}"/>
+						<Text class="sapUiTinyMarginTop" text="HTTPStatusCode: {HTTPStatusCode}"/>
+						<Text class="sapUiTinyMarginTopBottom" text="Message: {Message}"/>
+					</VBox>
+				</Page>
+			</NavContainer>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

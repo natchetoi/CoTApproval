@@ -1,0 +1,133 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "cot",
+		"type": "application",
+		"resources": "resources.json",
+		"i18n": "i18n/messageBundle.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"ach": "ach",
+		"dataSources": {
+			"mainService": {
+				"uri": "/here/goes/your/serviceurl/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		},
+		"offline": true,
+		"sourceTemplate": {
+			"id": "fioritemplate.UI5masterDetailKapselOffline",
+			"version": "1.32.4"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://detail-view",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "cot.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "cot.i18n.messageBundle"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "cot.MyRouter",
+				"viewType": "XML",
+				"viewPath": "cot.view",
+				"targetAggregation": "detailPages",
+				"clearTarget": false
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "main",
+					"view": "Master",
+					"targetAggregation": "masterPages",
+					"targetControl": "idAppControl",
+					"subroutes": [
+						{
+							"pattern": "{entity}/:tab:",
+							"name": "detail",
+							"view": "Detail"
+						}
+					]
+				},
+				{
+					"name": "catchallMaster",
+					"view": "Master",
+					"targetAggregation": "masterPages",
+					"targetControl": "idAppControl",
+					"subroutes": [
+						{
+							"pattern": ":all*:",
+							"name": "catchallDetail",
+							"view": "NotFound",
+							"transition": "show"
+						}
+					]
+				}
+			]
+		}
+	},
+	"sap.mobile": {
+		"_version": "1.1.0",
+		"definingRequests": {
+			"ApprovalReqSet": {
+				"dataSource": "mainService",
+				"path": "/ApprovalReqSet?$expand=ApproveAction"
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

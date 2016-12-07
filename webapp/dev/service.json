@@ -1,0 +1,8 @@
+{
+	"logon": true,
+	"host": "hcpms-p246821trial.hanatrial.ondemand.com",
+	"port": "443",
+	"https": "true",
+	"appID": "ca.toronto.cot",
+	"network": true
+}

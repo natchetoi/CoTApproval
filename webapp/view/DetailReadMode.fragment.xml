@@ -1,0 +1,19 @@
+<core:FragmentDefinition height="100%" width="100%" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Panel>
+		<ObjectHeader title="{approvalSubject}" number="{approver}" numberUnit="{approvalType}">
+			<ObjectAttribute text="{approvalType}"/>
+			<ObjectAttribute text="{ApprovalSummary}"/>
+		</ObjectHeader>
+		<IconTabBar select="onDetailSelect" id="idIconTabBar">
+			<items>
+				<IconTabFilter key="ApproveAction" text="ApproveAction" icon="sap-icon://hint">
+					<!--key="Detail" -->
+					<content>
+						<core:Fragment fragmentName="cot.view.DetailInfoForm" type="XML"/>
+					</content>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</Panel>
+</core:FragmentDefinition>
