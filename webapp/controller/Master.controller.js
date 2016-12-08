@@ -342,11 +342,32 @@ sap.ui.define([
 			oEventBus.publish("OfflineStore", "OpenErrDialog");
 		},
 		
-		approve: function() {
-			
+		approve: function(e) {
+			var oSwipeListItem = e.getParameter("listItem"),    
+            oSwipeContent = e.getParameter("swipeContent"); 
+
+        /* Check swiped list item if it is already approved or not
+        if (oSwipeListItem.data("approved")) {    
+            // List item is approved, change swipeContent(button) text to Disapprove and type to Reject
+            oSwipeContent.setText("Disapprove").setType("Reject");  
+        } else  {
+            // List item is not approved, change swipeContent(button) text to Approve and type to Accept
+            oSwipeContent.setText("Approve").setType("Accept");     
+        } */			
 		},
 		
-		deny: function() {
+		deny: function(e) {
+			var oSwipeListItem = e.getParameter("listItem"),    // get swiped list item from event
+            oSwipeContent = e.getParameter("swipeContent"); // get swiped content from event
+
+        // Check swiped list item if it is already approved or not
+        if (oSwipeListItem.data("approved")) {    
+            // List item is approved, change swipeContent(button) text to Disapprove and type to Reject
+            oSwipeContent.setText("Disapprove").setType("Reject");  
+        } else  {
+            // List item is not approved, change swipeContent(button) text to Approve and type to Accept
+            oSwipeContent.setText("Approve").setType("Accept");     
+        }
 			
 		}
 	});

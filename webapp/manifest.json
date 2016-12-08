@@ -85,14 +85,15 @@
 			},
 			"routes": [{
 				"pattern": "",
-				"name": "Master",
-				"view": "Master",
+				"name": "Splash",
+				"view": "Splash",
 				"targetAggregation": "masterPages",
 				"targetControl": "idAppControl",
 				"subroutes": [{
-					"pattern": "{entity}/:tab:",
-					"name": "detail",
-					"view": "Detail"
+					"pattern": "Login",
+					"name": "Login",
+					"view": "Login",
+					"transition": "show"
 				}]
 			}, {
 				"pattern": "Login",
@@ -107,6 +108,17 @@
 					"transition": "show"
 				}]
 			}, {
+				"pattern": "Master",
+				"name": "Master",
+				"view": "Master",
+				"targetAggregation": "masterPages",
+				"targetControl": "idAppControl",
+				"subroutes": [{
+					"pattern": "{entity}/:tab:",
+					"name": "detail",
+					"view": "Detail"
+				}]
+			}, {
 				"name": "catchallMaster",
 				"view": "Master",
 				"targetAggregation": "masterPages",
@@ -119,7 +131,7 @@
 				}]
 			}],
 			"targets": {
-				"Master": {
+				"Master1": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearAggregation": true,
@@ -128,7 +140,7 @@
 					"viewLevel": 1,
 					"viewId": "Master"
 				},
-				"Detail": {
+				"Detail1": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearAggregation": true,
