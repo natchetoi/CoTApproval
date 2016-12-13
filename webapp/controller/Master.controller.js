@@ -165,6 +165,24 @@ sap.ui.define([
 			this._selectedItemIdx = list.indexOfItem(list.getSelectedItem());
 		},
 
+		handleSwipe: function(e) {   // register swipe event
+        	var oSwipeListItem = e.getParameter("listItem"),    // get swiped list item from event
+            	oSwipeContent = e.getParameter("swipeContent"); // get swiped content from event
+			
+			var list = this.getView().byId("list");
+			var item = list.getSwipedItem();
+			var direction = list.swipeDirection;
+			
+        	// Check swiped list item if it is already approved or not
+        	if (oSwipeListItem.data("Approved")) {    
+            	// List item is approved, change swipeContent(button) text to Disapprove and type to Reject
+            	oSwipeContent.setText("Denied").setType("Deny");  
+        	} else  {
+	            // List item is not approved, change swipeContent(button) text to Approve and type to Accept
+    	        oSwipeContent.setText("Approved").setType("Approve");     
+        	}
+    	},
+
 		/**
 		 * Event handler for the list selection event
 		 * @param {sap.ui.base.Event} oEvent the list selectionChange event
@@ -212,13 +230,18 @@ sap.ui.define([
 		 * @param {sap.m.ObjectListItem} oItem selected Item
 		 */
 		showDetail: function(oItem) {
+			
+			this.handleSwipe( oItem );
 			// If we're on a phone, include nav in history; if not, don't.
 			var bReplace = Device.system.phone ? false : true;
+
+/*			
 			this.getRouter().navTo("detail", {
 				from: "master",
 				entity: oItem.getBindingContext().getPath().substr(1),
 				tab: this.sTab
 			}, bReplace);
+*/			
 		},
 
 		/**
