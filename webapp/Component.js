@@ -70,6 +70,8 @@ sap.ui.define([
 			if (devapp.isLoaded) {
 				devapp.devLogon.getErrorArchiveCount();
 			}
+
+			window.coTShared = {};
 		},
 
 		/**

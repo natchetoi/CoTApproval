@@ -1,43 +1,53 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"  xmlns:unified="sap.ui.unified"
-     controllerName="cot.controller.Master" displayBlock="true">
-	<Page id="page" title="{i18n>masterTitle}">
-		<headerContent>
-			<core:Icon id="masterIcon" src="sap-icon://alert" visible="{device>/isOffline}"/>
-		</headerContent>
-		<subHeader>
-			<Bar id="searchBar">
-				<contentMiddle>
-					<SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" search="onSearch" tooltip="{i18n>masterSearchTooltip}" width="100%"/>
-				</contentMiddle>
-			</Bar>
-		</subHeader>
-		<content>
-			<List id="list" items="{/ApprovalReqSet}" select="onSelect" swipe="handleSwipe"
-				mode="{device>/listMode}" 
-				noDataText="{i18n>masterListNoDataText}" >
-				<items>
-					<StandardListItem type="{device>/listItemType}" press="onSelect" detailPress="onAction" 
-						title="{approvalSubject}" 
-						description="{ApprovalSummary}"
-						icon="images/CAB.png"
-						iconDensityAware="false"
-						iconInset="false" />
-					<swipeContent>
-						<Button text="Deny"    press="deny"		type="Reject" />
-						<Button text="Approve" press="approve"  type="Accept" />
-				    </swipeContent>
-				</items>
-			</List>
-		</content>
-		<footer>
-			<Toolbar>
-				<content>
-					<Button icon="sap-icon://error" text="{device>/errorNum}" visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}" press="onErrorPress"/>
-					<Button icon="sap-icon://refresh" press="refreshData"/>
-					<ToolbarSpacer/>
-					<!-- Button icon="sap-icon://add" press="addItem"></Button -->
-				</content>
-			</Toolbar>
-		</footer>
-	</Page>
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:unified="sap.ui.unified"
+          xmlns:l="sap.ui.layout"
+          controllerName="cot.controller.Master" displayBlock="true">
+    <Page id="page" title="{i18n>masterTitle}">
+        <headerContent>
+            <core:Icon id="masterIcon" src="sap-icon://alert" visible="{device>/isOffline}"/>
+        </headerContent>
+        <subHeader>
+            <Bar id="searchBar">
+                <contentMiddle>
+                    <SearchField id="searchField" showRefreshButton="{device>/isNoTouch}"
+                                 placeholder="{i18n>masterSearchPlaceholder}" search="onSearch"
+                                 tooltip="{i18n>masterSearchTooltip}" width="100%"/>
+                </contentMiddle>
+            </Bar>
+        </subHeader>
+        <content>
+            <List id="list" items="{requests>/}" select="onSelect"
+                  mode="{device>/listMode}"
+                  noDataText="{i18n>masterListNoDataText}">
+
+                    <StandardListItem type="{device>listItemType}"
+                                      title="{requests>approvalSubject}"
+                                      description="{requests>ApprovalSummary}"/>
+                <swipeContent>
+                    <l:HorizontalLayout>
+                        <Button
+                                text="Reject"
+                                type="Reject"
+                                press="handleReject"/>
+                        <Button
+                                text="Approve"
+                                type="Accept"
+                                press="handleReject"/>
+
+                    </l:HorizontalLayout>
+                </swipeContent>
+            </List>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <Button icon="sap-icon://error" text="{device>/errorNum}"
+                            visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}"
+                            press="onErrorPress"/>
+                    <Button icon="sap-icon://refresh" press="refreshData"/>
+                    <ToolbarSpacer/>
+                    <!-- Button icon="sap-icon://add" press="addItem"></Button -->
+                </content>
+            </Toolbar>
+        </footer>
+    </Page>
 </mvc:View>

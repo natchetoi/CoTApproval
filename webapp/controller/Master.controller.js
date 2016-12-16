@@ -11,28 +11,28 @@ sap.ui.define([
 		 * It sets up the event handling for the master/detail communication and other lifecycle tasks.
 		 */
 		onInit: function() {
-			this.oInitialLoadFinishedDeferred = jQuery.Deferred();
-			var oEventBus = this.getEventBus();
-
-			this.getView().byId("list").attachEventOnce("updateFinished", function() {
-				this.oInitialLoadFinishedDeferred.resolve();
-				oEventBus.publish("Master", "InitialLoadFinished", {
-					oListItem: this.getView().byId("list").getItems()[0]
-				});
-			}, this);
-
-			oEventBus.subscribe("Detail", "TabChanged", this.onDetailTabChanged, this);
-
-			//on phones, we will not have to select anything in the list so we don't need to attach to events
-			if (Device.system.phone) {
-				return;
-			}
-
+			// this.oInitialLoadFinishedDeferred = jQuery.Deferred();
+			// var oEventBus = this.getEventBus();
+            //
+			// this.getView().byId("list").attachEventOnce("updateFinished", function() {
+			// 	this.oInitialLoadFinishedDeferred.resolve();
+			// 	oEventBus.publish("Master", "InitialLoadFinished", {
+			// 		oListItem: this.getView().byId("list").getItems()[0]
+			// 	});
+			// }, this);
+            //
+			// oEventBus.subscribe("Detail", "TabChanged", this.onDetailTabChanged, this);
+            //
+			// //on phones, we will not have to select anything in the list so we don't need to attach to events
+			// if (Device.system.phone) {
+			// 	return;
+			// }
+            //
 			this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
-
-			oEventBus.subscribe("Detail", "Changed", this.onDetailChanged, this);
-			oEventBus.subscribe("Detail", "NotFound", this.onNotFound, this);
-			oEventBus.subscribe("Detail", "Cancelled", this.onDetailChangeCancelled, this);
+            //
+			// oEventBus.subscribe("Detail", "Changed", this.onDetailChanged, this);
+			// oEventBus.subscribe("Detail", "NotFound", this.onNotFound, this);
+			// oEventBus.subscribe("Detail", "Cancelled", this.onDetailChangeCancelled, this);
 		},
 
 		/**
@@ -40,26 +40,29 @@ sap.ui.define([
 		 * @param{sap.ui.base.Event} oEvent router pattern matched event object
 		 */
 		onRouteMatched: function(oEvent) {
-			var sName = oEvent.getParameter("name");
+			// var sName = oEvent.getParameter("name");
+            //
+			// if (sName !== "main") {
+			// 	return;
+			// }
 
-			if (sName !== "main") {
-				return;
-			}
+			// //Load the detail view in desktop
+			// this.getRouter().myNavToWithoutHash({
+			// 	currentView: this.getView(),
+			// 	targetViewName: "cot.view.Detail",
+			// 	targetViewType: "XML"
+			// });
+            //
+			// //Wait for the list to be loaded once
+			// this.waitForInitialListLoading(function() {
+            //
+			// 	//On the empty hash select the first item
+			// 	this.selectFirstItem();
+            //
+			// });
 
-			//Load the detail view in desktop
-			this.getRouter().myNavToWithoutHash({
-				currentView: this.getView(),
-				targetViewName: "cot.view.Detail",
-				targetViewType: "XML"
-			});
-
-			//Wait for the list to be loaded once
-			this.waitForInitialListLoading(function() {
-
-				//On the empty hash select the first item
-				this.selectFirstItem();
-
-			});
+            var model = sap.ui.getCore().getModel("requests");
+            this.getView().setModel(model, "requests");
 
 		},
 

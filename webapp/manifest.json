@@ -58,8 +58,7 @@
 			"libs": {
 				"sap.ui.core": {},
 				"sap.m": {},
-				"sap.ui.layout": {},
-				"sap.ushell": {}
+				"sap.ui.layout": {}
 			}
 		},
 		"contentDensities": {
@@ -91,7 +90,7 @@
 				"targetControl": "idAppControl",
 				"subroutes": [{
 					"pattern": "Login",
-					"name": "Login",
+					"name": "Login1",
 					"view": "Login",
 					"transition": "show"
 				}]
@@ -103,7 +102,7 @@
 				"targetControl": "idAppControl",
 				"subroutes": [{
 					"pattern": "Master",
-					"name": "Master",
+					"name": "Master1",
 					"view": "Master",
 					"transition": "show"
 				}]
