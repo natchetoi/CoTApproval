@@ -1,400 +1,397 @@
 sap.ui.define([
-	"sap/ui/Device",
-	"cot/util/Controller",
-	"cot/dev/devapp"
-], function(Device, Controller, devapp) {
-	"use strict";
+    "sap/ui/Device",
+    "cot/util/Controller",
+    "cot/dev/devapp"
+], function (Device, Controller, devapp) {
+    "use strict";
 
-	return Controller.extend("cot.controller.Master", {
-		/**
-		 * Called when the master list controller is instantiated. 
-		 * It sets up the event handling for the master/detail communication and other lifecycle tasks.
-		 */
-		onInit: function() {
-			// this.oInitialLoadFinishedDeferred = jQuery.Deferred();
-			// var oEventBus = this.getEventBus();
-            //
-			// this.getView().byId("list").attachEventOnce("updateFinished", function() {
-			// 	this.oInitialLoadFinishedDeferred.resolve();
-			// 	oEventBus.publish("Master", "InitialLoadFinished", {
-			// 		oListItem: this.getView().byId("list").getItems()[0]
-			// 	});
-			// }, this);
-            //
-			// oEventBus.subscribe("Detail", "TabChanged", this.onDetailTabChanged, this);
-            //
-			// //on phones, we will not have to select anything in the list so we don't need to attach to events
-			// if (Device.system.phone) {
-			// 	return;
-			// }
-            //
-			this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
-            //
-			// oEventBus.subscribe("Detail", "Changed", this.onDetailChanged, this);
-			// oEventBus.subscribe("Detail", "NotFound", this.onNotFound, this);
-			// oEventBus.subscribe("Detail", "Cancelled", this.onDetailChangeCancelled, this);
-		},
+    return Controller.extend("cot.controller.Master", {
+        modelName: "requests",
 
-		/**
-		 * Master view RoutePatternMatched event handler 
-		 * @param{sap.ui.base.Event} oEvent router pattern matched event object
-		 */
-		onRouteMatched: function(oEvent) {
-			// var sName = oEvent.getParameter("name");
+        /**
+         * Called when the master list controller is instantiated.
+         * It sets up the event handling for the master/detail communication and other lifecycle tasks.
+         */
+        onInit: function () {
+            // this.oInitialLoadFinishedDeferred = jQuery.Deferred();
+            // var oEventBus = this.getEventBus();
             //
-			// if (sName !== "main") {
-			// 	return;
-			// }
+            // this.getView().byId("list").attachEventOnce("updateFinished", function() {
+            // 	this.oInitialLoadFinishedDeferred.resolve();
+            // 	oEventBus.publish("Master", "InitialLoadFinished", {
+            // 		oListItem: this.getView().byId("list").getItems()[0]
+            // 	});
+            // }, this);
+            //
+            // oEventBus.subscribe("Detail", "TabChanged", this.onDetailTabChanged, this);
+            //
+            // //on phones, we will not have to select anything in the list so we don't need to attach to events
+            // if (Device.system.phone) {
+            // 	return;
+            // }
+            //
+            this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
+            //
+            // oEventBus.subscribe("Detail", "Changed", this.onDetailChanged, this);
+            // oEventBus.subscribe("Detail", "NotFound", this.onNotFound, this);
+            // oEventBus.subscribe("Detail", "Cancelled", this.onDetailChangeCancelled, this);
+        },
 
-			// //Load the detail view in desktop
-			// this.getRouter().myNavToWithoutHash({
-			// 	currentView: this.getView(),
-			// 	targetViewName: "cot.view.Detail",
-			// 	targetViewType: "XML"
-			// });
-            //
-			// //Wait for the list to be loaded once
-			// this.waitForInitialListLoading(function() {
-            //
-			// 	//On the empty hash select the first item
-			// 	this.selectFirstItem();
-            //
-			// });
-
+        loadRequests: function () {
             var model = sap.ui.getCore().getModel("requests");
-            this.getView().setModel(model, "requests");
+            var data = model.getData();
+            var items = Enumerable.From(data)
+                .Where(function (x) {
+                    return x.approvalStatus === undefined || x.approvalStatus === "";
+                })
+                .ToArray();
+            var localModel = new sap.ui.model.json.JSONModel();
+            localModel.setData(items);
+            this.getView().setModel(localModel, this.modelName);
+        },
 
-		},
+        /**
+         * Master view RoutePatternMatched event handler
+         * @param{sap.ui.base.Event} oEvent router pattern matched event object
+         */
 
-		/**
-		 * Detail changed event handler, set selected item
-		 * @param{String} sChanel event channel name
-		 * @param{String}} sEvent event name
-		 * @param{Object}} oData event data object
-		 */
-		onDetailChanged: function(sChanel, sEvent, oData) {
-			var sProductPath = oData.sProductPath;
-			//Wait for the list to be loaded once
-			this.waitForInitialListLoading(function() {
-				var oList = this.getView().byId("list");
+        onRouteMatched: function (oEvent) {
+            // var sName = oEvent.getParameter("name");
+            //
+            // if (sName !== "main") {
+            // 	return;
+            // }
 
-				var oSelectedItem = oList.getSelectedItem();
-				// the correct item is already selected
-				if (oSelectedItem && oSelectedItem.getBindingContext().getPath() === sProductPath) {
-					return;
-				}
+            // //Load the detail view in desktop
+            // this.getRouter().myNavToWithoutHash({
+            // 	currentView: this.getView(),
+            // 	targetViewName: "cot.view.Detail",
+            // 	targetViewType: "XML"
+            // });
+            //
+            // //Wait for the list to be loaded once
+            // this.waitForInitialListLoading(function() {
+            //
+            // 	//On the empty hash select the first item
+            // 	this.selectFirstItem();
+            //
+            // });
+            this.loadRequests();
 
-				var aItems = oList.getItems();
+        },
 
-				for (var i = 0; i < aItems.length; i++) {
-					if (aItems[i].getBindingContext().getPath() === sProductPath) {
-						oList.setSelectedItem(aItems[i], true);
-						break;
-					}
-				}
-			});
-		},
+        /**
+         * Detail changed event handler, set selected item
+         * @param{String} sChanel event channel name
+         * @param{String}} sEvent event name
+         * @param{Object}} oData event data object
+         */
+        onDetailChanged: function (sChanel, sEvent, oData) {
+            var sProductPath = oData.sProductPath;
+            //Wait for the list to be loaded once
+            this.waitForInitialListLoading(function () {
+                var oList = this.getView().byId("list");
 
-		/**
-		 * Detail TabChanged event handler
-		 * @param{String} sChanel event channel name
-		 * @param{String}} sEvent event name
-		 * @param{Object}} oData event data object
-		 */
-		onDetailTabChanged: function(sChanel, sEvent, oData) {
-			this.sTab = oData.sTabKey;
-		},
+                var oSelectedItem = oList.getSelectedItem();
+                // the correct item is already selected
+                if (oSelectedItem && oSelectedItem.getBindingContext().getPath() === sProductPath) {
+                    return;
+                }
 
-		/**
-		 * Detail cancel event handler, reset selected item and show detail view
-		 * @param{String} sChanel event channel name
-		 * @param{String}} sEvent event name
-		 * @param{Object}} oData event data object
-		 */
-		onDetailChangeCancelled: function() {
-			var list = this.getView().byId("list");
-			var listItems = list.getItems();
-			var selectedItem = listItems[this._selectedItemIdx] ? listItems[this._selectedItemIdx] : listItems[0];
-			if (selectedItem) {
-				list.setSelectedItem(selectedItem);
-				this.showDetail(selectedItem);
-			}
-		},
+                var aItems = oList.getItems();
 
-		/**
-		 * wait until this.oInitialLoadFinishedDeferred is resolved, and list view updated
-		 * @param{function} fnToExecute the function will be executed if this.oInitialLoadFinishedDeferred is resolved
-		 */
-		waitForInitialListLoading: function(fnToExecute) {
-			jQuery.when(this.oInitialLoadFinishedDeferred).then(jQuery.proxy(fnToExecute, this));
-		},
+                for (var i = 0; i < aItems.length; i++) {
+                    if (aItems[i].getBindingContext().getPath() === sProductPath) {
+                        oList.setSelectedItem(aItems[i], true);
+                        break;
+                    }
+                }
+            });
+        },
 
-		/**
-		 * Detail NotFound event handler
-		 */
-		onNotFound: function() {
-			this.getView().byId("list").removeSelections();
-		},
+        /**
+         * Detail TabChanged event handler
+         * @param{String} sChanel event channel name
+         * @param{String}} sEvent event name
+         * @param{Object}} oData event data object
+         */
+        onDetailTabChanged: function (sChanel, sEvent, oData) {
+            this.sTab = oData.sTabKey;
+        },
 
-		/**
-		 * set the first item as selected item
-		 */
-		selectFirstItem: function() {
-			var oList = this.getView().byId("list");
-			var aItems = oList.getItems();
-			if (aItems.length) {
-				oList.setSelectedItem(aItems[0], true);
-				this._selectedItemIdx = 0;
-			}
-		},
+        /**
+         * Detail cancel event handler, reset selected item and show detail view
+         * @param{String} sChanel event channel name
+         * @param{String}} sEvent event name
+         * @param{Object}} oData event data object
+         */
+        onDetailChangeCancelled: function () {
+            var list = this.getView().byId("list");
+            var listItems = list.getItems();
+            var selectedItem = listItems[this._selectedItemIdx] ? listItems[this._selectedItemIdx] : listItems[0];
+            if (selectedItem) {
+                list.setSelectedItem(selectedItem);
+                this.showDetail(selectedItem);
+            }
+        },
 
-		/**
-		 * Event handler for the master search field. Applies current
-		 * filter value and triggers a new search. If the search field's
-		 * 'refresh' button has been pressed, no new search is triggered
-		 * and the list binding is refresh instead.
-		 */
-		onSearch: function() {
-			// add filter for search
-			var filters = [];
-			var searchString = this.getView().byId("searchField").getValue();
-			if (searchString && searchString.length > 0) {
-				filters = [new sap.ui.model.Filter("approvalSubject", sap.ui.model.FilterOperator.Contains, searchString)];
-			}
+        /**
+         * wait until this.oInitialLoadFinishedDeferred is resolved, and list view updated
+         * @param{function} fnToExecute the function will be executed if this.oInitialLoadFinishedDeferred is resolved
+         */
+        waitForInitialListLoading: function (fnToExecute) {
+            jQuery.when(this.oInitialLoadFinishedDeferred).then(jQuery.proxy(fnToExecute, this));
+        },
 
-			// update list binding
-			var list = this.getView().byId("list");
-			list.getBinding("items").filter(filters);
-			this._selectedItemIdx = list.indexOfItem(list.getSelectedItem());
-		},
+        /**
+         * Detail NotFound event handler
+         */
+        onNotFound: function () {
+            this.getView().byId("list").removeSelections();
+        },
 
-		handleSwipe: function(e) {   // register swipe event
-        	var oSwipeListItem = e.getParameter("listItem"),    // get swiped list item from event
-            	oSwipeContent = e.getParameter("swipeContent"); // get swiped content from event
-			
-			var list = this.getView().byId("list");
-			var item = list.getSwipedItem();
-			var direction = list.swipeDirection;
-			
-        	// Check swiped list item if it is already approved or not
-        	if (oSwipeListItem.data("Approved")) {    
-            	// List item is approved, change swipeContent(button) text to Disapprove and type to Reject
-            	oSwipeContent.setText("Denied").setType("Deny");  
-        	} else  {
-	            // List item is not approved, change swipeContent(button) text to Approve and type to Accept
-    	        oSwipeContent.setText("Approved").setType("Approve");     
-        	}
-    	},
+        /**
+         * set the first item as selected item
+         */
+        selectFirstItem: function () {
+            var oList = this.getView().byId("list");
+            var aItems = oList.getItems();
+            if (aItems.length) {
+                oList.setSelectedItem(aItems[0], true);
+                this._selectedItemIdx = 0;
+            }
+        },
 
-		/**
-		 * Event handler for the list selection event
-		 * @param {sap.ui.base.Event} oEvent the list selectionChange event
-		 */
-		onSelect: function(oEvent) {
-			// Get the list item, either from the listItem parameter or from the event's
-			// source itself (will depend on the device-dependent mode).
-			var model = this.getView().getModel();
-			var list = this.getView().byId("list");
-			var item = oEvent.getParameter("listItem") || oEvent.getSource();
-			if (model.hasPendingChanges() || model.newEntryContext) {
-				this.openCancelConfirmDialog();
-				this._onConfirmAction = jQuery.proxy(function() {
-					this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
-					this.showDetail(item);
-				}, this);
-			} else {
-				this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
-				this.showDetail(item);
-			}
-		},
-		
-		onAction: function(oEvent) {
-			// Get the list item, either from the listItem parameter or from the event's
-			// source itself (will depend on the device-dependent mode).
-			var model = this.getView().getModel();
-			var list = this.getView().byId("list");
-			var item = oEvent.getParameter("listItem") || oEvent.getSource();
-			if (model.hasPendingChanges() || model.newEntryContext) {
-				this.openCancelConfirmDialog();
-				this._onConfirmAction = jQuery.proxy(function() {
-					this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
-					this.showDetail(item);
-				}, this);
-			} else {
-				this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
-				this.showDetail(item);
-			}
-		},
+        /**
+         * Event handler for the master search field. Applies current
+         * filter value and triggers a new search. If the search field's
+         * 'refresh' button has been pressed, no new search is triggered
+         * and the list binding is refresh instead.
+         */
+        onSearch: function () {
+            // add filter for search
+            var filters = [];
+            var searchString = this.getView().byId("searchField").getValue();
+            if (searchString && searchString.length > 0) {
+                filters = [new sap.ui.model.Filter("approvalSubject", sap.ui.model.FilterOperator.Contains, searchString)];
+            }
+
+            // update list binding
+            var list = this.getView().byId("list");
+            list.getBinding("items").filter(filters);
+            this._selectedItemIdx = list.indexOfItem(list.getSelectedItem());
+        },
+
+        /**
+         * Event handler for the list selection event
+         * @param {sap.ui.base.Event} oEvent the list selectionChange event
+         */
+        onSelect: function (oEvent) {
+            // Get the list item, either from the listItem parameter or from the event's
+            // source itself (will depend on the device-dependent mode).
+            var model = this.getView().getModel();
+            var list = this.getView().byId("list");
+            var item = oEvent.getParameter("listItem") || oEvent.getSource();
+            if (model.hasPendingChanges() || model.newEntryContext) {
+                this.openCancelConfirmDialog();
+                this._onConfirmAction = jQuery.proxy(function () {
+                    this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
+                    this.showDetail(item);
+                }, this);
+            } else {
+                this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
+                this.showDetail(item);
+            }
+        },
+
+        onAction: function (oEvent) {
+            // Get the list item, either from the listItem parameter or from the event's
+            // source itself (will depend on the device-dependent mode).
+            var model = this.getView().getModel();
+            var list = this.getView().byId("list");
+            var item = oEvent.getParameter("listItem") || oEvent.getSource();
+            if (model.hasPendingChanges() || model.newEntryContext) {
+                this.openCancelConfirmDialog();
+                this._onConfirmAction = jQuery.proxy(function () {
+                    this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
+                    this.showDetail(item);
+                }, this);
+            } else {
+                this._selectedItemIdx = list.indexOfItem(oEvent.getParameter("listItem"));
+                this.showDetail(item);
+            }
+        },
 
 
-		/**
-		 * Shows the selected item on the detail page
-		 * On phones a additional history entry is created
-		 * @param {sap.m.ObjectListItem} oItem selected Item
-		 */
-		showDetail: function(oItem) {
-			
-			this.handleSwipe( oItem );
-			// If we're on a phone, include nav in history; if not, don't.
-			var bReplace = Device.system.phone ? false : true;
+        /**
+         * Shows the selected item on the detail page
+         * On phones a additional history entry is created
+         * @param {sap.m.ObjectListItem} oItem selected Item
+         */
+        showDetail: function (oItem) {
 
-/*			
-			this.getRouter().navTo("detail", {
-				from: "master",
-				entity: oItem.getBindingContext().getPath().substr(1),
-				tab: this.sTab
-			}, bReplace);
-*/			
-		},
+            this.handleSwipe(oItem);
+            // If we're on a phone, include nav in history; if not, don't.
+            var bReplace = Device.system.phone ? false : true;
 
-		/**
-		 * AddItem button handler
-		 */
-		addItem: function() {
+            /*
+             this.getRouter().navTo("detail", {
+             from: "master",
+             entity: oItem.getBindingContext().getPath().substr(1),
+             tab: this.sTab
+             }, bReplace);
+             */
+        },
 
-			var model = this.getView().getModel();
-			if (model.hasPendingChanges() || model.newEntryContext) {
-				this.openCancelConfirmDialog();
-				this._onConfirmAction = this.executeAddItem;
-			} else {
-				this.executeAddItem();
-			}
-		},
+        /**
+         * AddItem button handler
+         */
+        addItem: function () {
 
-		/**
-		 * add a new record to offline store
-		 */
-		executeAddItem: function() {
-			//var oEventBus = this.getEventBus();
-			//oEventBus.publish("Master", "AddItem");
-			var oList = this.getView().byId("list");
-			var bindingPath = oList.getBinding("items").getPath();
+            var model = this.getView().getModel();
+            if (model.hasPendingChanges() || model.newEntryContext) {
+                this.openCancelConfirmDialog();
+                this._onConfirmAction = this.executeAddItem;
+            } else {
+                this.executeAddItem();
+            }
+        },
 
-			var bReplace = Device.system.phone ? false : true;
-			this.getRouter().navTo("detail", {
-				from: "master",
-				entity: bindingPath.substr(1),
-				tab: "AddItem"
-			}, bReplace);
-		},
+        /**
+         * add a new record to offline store
+         */
+        executeAddItem: function () {
+            //var oEventBus = this.getEventBus();
+            //oEventBus.publish("Master", "AddItem");
+            var oList = this.getView().byId("list");
+            var bindingPath = oList.getBinding("items").getPath();
 
-		/**
-		 * open cancelConfirmDialog
-		 */
-		openCancelConfirmDialog: function() {
-			if (!this._cancelConfirmDialog) {
-				var id = this.getView().getId();
-				var frgId = id + "-_cancelConfirmDialog";
-				this._cancelConfirmDialog = sap.ui.xmlfragment(frgId, "cot.view.CancelConfirmDialog", this);
-				this.getView().addDependent(this._cancelConfirmDialog);
-			}
-			this._cancelConfirmDialog.open();
-		},
+            var bReplace = Device.system.phone ? false : true;
+            this.getRouter().navTo("detail", {
+                from: "master",
+                entity: bindingPath.substr(1),
+                tab: "AddItem"
+            }, bReplace);
+        },
 
-		/**
-		 * cancelConfirmDialog "yes" button handler
-		 */
-		confirmCancel: function() {
-			if (this._onConfirmAction) {
-				if (this._cancelConfirmDialog) {
-					this._cancelConfirmDialog.close();
-				}
+        /**
+         * open cancelConfirmDialog
+         */
+        openCancelConfirmDialog: function () {
+            if (!this._cancelConfirmDialog) {
+                var id = this.getView().getId();
+                var frgId = id + "-_cancelConfirmDialog";
+                this._cancelConfirmDialog = sap.ui.xmlfragment(frgId, "cot.view.CancelConfirmDialog", this);
+                this.getView().addDependent(this._cancelConfirmDialog);
+            }
+            this._cancelConfirmDialog.open();
+        },
 
-				this._onConfirmAction.apply(this, arguments);
-				this._onConfirmAction = null;
-			}
-		},
+        /**
+         * cancelConfirmDialog "yes" button handler
+         */
+        confirmCancel: function () {
+            if (this._onConfirmAction) {
+                if (this._cancelConfirmDialog) {
+                    this._cancelConfirmDialog.close();
+                }
 
-		/**
-		 * close cancelConfirmDialog
-		 */
-		closeCancelConfirmDialog: function() {
-			if (this._cancelConfirmDialog) {
-				this._cancelConfirmDialog.close();
-			}
-			var list = this.getView().byId("list");
-			if (list.indexOfItem(list.getSelectedItem()) !== this._selectedItemIdx) {
-				var selectedItem = list.getItems()[this._selectedItemIdx];
-				if (selectedItem) {
-					list.setSelectedItem(selectedItem);
-				}
-			}
-		},
+                this._onConfirmAction.apply(this, arguments);
+                this._onConfirmAction = null;
+            }
+        },
 
-		/**
-		 * refreshing offline store data
-		 */
-		refreshData: function() {
-			var model = this.getView().getModel();
-			if (model.hasPendingChanges() || model.newEntryContext) {
-				this.openCancelConfirmDialog();
-				this._onConfirmAction = jQuery.proxy(function() {
-					if (devapp.isLoaded) {
-						if (devapp.isOnline) {
-							var oEventBus = this.getEventBus();
-							oEventBus.publish("OfflineStore", "Refreshing");
-						} else {
-							model.refresh();
-						}
-					} else {
-						model.refresh();
-					}
-				}, this);
-			} else {
-				if (devapp.isLoaded) {
-					if (devapp.isOnline) {
-						var oEventBus = this.getEventBus();
-						oEventBus.publish("OfflineStore", "Refreshing");
-					} else {
-						model.refresh();
-					}
-				} else {
-					model.refresh();
-				}
-			}
-		},
+        /**
+         * close cancelConfirmDialog
+         */
+        closeCancelConfirmDialog: function () {
+            if (this._cancelConfirmDialog) {
+                this._cancelConfirmDialog.close();
+            }
+            var list = this.getView().byId("list");
+            if (list.indexOfItem(list.getSelectedItem()) !== this._selectedItemIdx) {
+                var selectedItem = list.getItems()[this._selectedItemIdx];
+                if (selectedItem) {
+                    list.setSelectedItem(selectedItem);
+                }
+            }
+        },
 
-		onErrorBTVisible: function(errCount) {
-			var bShow = false;
-			if (errCount > 0) {
-				bShow = true;
-			}
+        /**
+         * refreshing offline store data
+         */
+        onRefreshData: function () {
+            var model = this.getView().getModel();
+            if (model.hasPendingChanges() || model.newEntryContext) {
+                this.openCancelConfirmDialog();
+                this._onConfirmAction = jQuery.proxy(function () {
+                    if (devapp.isLoaded) {
+                        if (devapp.isOnline) {
+                            var oEventBus = this.getEventBus();
+                            oEventBus.publish("OfflineStore", "Refreshing");
+                        } else {
+                            model.refresh();
+                        }
+                    } else {
+                        model.refresh();
+                    }
+                }, this);
+            } else {
+                if (devapp.isLoaded) {
+                    if (devapp.isOnline) {
+                        var oEventBus = this.getEventBus();
+                        oEventBus.publish("OfflineStore", "Refreshing");
+                    } else {
+                        model.refresh();
+                    }
+                } else {
+                    model.refresh();
+                }
+            }
+        },
 
-			return bShow;
-		},
+        onErrorBTVisible: function (errCount) {
+            var bShow = false;
+            if (errCount > 0) {
+                bShow = true;
+            }
 
-		onErrorPress: function() {
-			var oEventBus = this.getEventBus();
-			oEventBus.publish("OfflineStore", "OpenErrDialog");
-		},
-		
-		approve: function(e) {
-			var oSwipeListItem = e.getParameter("listItem"),    
-            oSwipeContent = e.getParameter("swipeContent"); 
+            return bShow;
+        },
 
-        /* Check swiped list item if it is already approved or not
-        if (oSwipeListItem.data("approved")) {    
-            // List item is approved, change swipeContent(button) text to Disapprove and type to Reject
-            oSwipeContent.setText("Disapprove").setType("Reject");  
-        } else  {
-            // List item is not approved, change swipeContent(button) text to Approve and type to Accept
-            oSwipeContent.setText("Approve").setType("Accept");     
-        } */			
-		},
-		
-		deny: function(e) {
-			var oSwipeListItem = e.getParameter("listItem"),    // get swiped list item from event
-            oSwipeContent = e.getParameter("swipeContent"); // get swiped content from event
+        onErrorPress: function () {
+            var oEventBus = this.getEventBus();
+            oEventBus.publish("OfflineStore", "OpenErrDialog");
+        },
 
-        // Check swiped list item if it is already approved or not
-        if (oSwipeListItem.data("approved")) {    
-            // List item is approved, change swipeContent(button) text to Disapprove and type to Reject
-            oSwipeContent.setText("Disapprove").setType("Reject");  
-        } else  {
-            // List item is not approved, change swipeContent(button) text to Approve and type to Accept
-            oSwipeContent.setText("Approve").setType("Accept");     
+        setStatus: function (status) {
+            var self = this;
+            var swipedItem = self.byId("list").getSwipedItem();
+            var dataItem = swipedItem.getBindingContext(self.modelName).getObject();
+
+            var model = sap.ui.getCore().getModel(self.modelName);
+            var data = model.getData();
+            var item = Enumerable.From(data)
+                .Where(function (x) {
+                    return x.RequestID === dataItem.RequestID;
+                })
+                .FirstOrDefault();
+            if (item !== undefined) {
+                item.approvalStatus = status;
+            }
+
+            model.setData(data);
+            sap.ui.getCore().setModel(model, self.modelName);
+
+            self.loadRequests();
+        },
+
+        onReject: function (e) {
+            this.setStatus("rejected");
+        },
+
+        onApprove: function (e) {
+            this.setStatus("approved");
         }
-			
-		}
-	});
+    });
 });

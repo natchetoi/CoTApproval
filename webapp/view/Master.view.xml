@@ -27,11 +27,11 @@
                         <Button
                                 text="Reject"
                                 type="Reject"
-                                press="handleReject"/>
+                                press="onReject"/>
                         <Button
                                 text="Approve"
                                 type="Accept"
-                                press="handleReject"/>
+                                press="onApprove"/>
 
                     </l:HorizontalLayout>
                 </swipeContent>
@@ -43,7 +43,7 @@
                     <Button icon="sap-icon://error" text="{device>/errorNum}"
                             visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}"
                             press="onErrorPress"/>
-                    <Button icon="sap-icon://refresh" press="refreshData"/>
+                    <Button icon="sap-icon://refresh" press="onRefreshData"/>
                     <ToolbarSpacer/>
                     <!-- Button icon="sap-icon://add" press="addItem"></Button -->
                 </content>

@@ -5,6 +5,8 @@ sap.ui.define([
 
     return Controller.extend("cot.controller.Login", {
 
+        modelName: "requests",
+
         /**
          * Called when a controller is instantiated and its View controls (if available) are already created.
          * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -77,10 +79,14 @@ sap.ui.define([
                 async: true,
                 crossDomain: true,
                 success: function (data, textStatus, jqXHR) { // callback called when data is
-                    var requests = data;
+                    var requests = Enumerable.From(data)
+                        .OrderBy(function(x) {
+                            return x.approvalSubject;
+                        })
+                        .ToArray();
                     var model = new sap.ui.model.json.JSONModel();
                     model.setData(requests);
-                    sap.ui.getCore().setModel(model, "requests");
+                    sap.ui.getCore().setModel(model, self.modelName);
                     self.mainScreen();
                 },
                 error: function (data, textStatus, jqXHR) {

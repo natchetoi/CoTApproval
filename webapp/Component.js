@@ -1,3 +1,5 @@
+
+jQuery.sap.registerModulePath("libs", "/libs/");
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/model/odata/ODataModel",
