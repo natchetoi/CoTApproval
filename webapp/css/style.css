@@ -1,51 +1,48 @@
 .spacerTop {
     margin-top: 2rem;
 }
-
 .coTLoginView {
-    background-image: url("../Images/login2.png");
+    background-image: url("../images/login2.png");
     background-repeat: no-repeat;
+    background-color: #252525;
     background-size: contain;
     background-size: 100% 100%;
 }
-
 .coTUserName {
     position: fixed;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
     padding: 2em;
-    top: 53%;
+    top: 274px;
 }
-.coTPasswordLabel {
+.coTUserName input {
+    background-color: #252525;
     color: white;
-    position: fixed;
-    padding: 2em;
-    top: 65%;
+	
 }
 .coTPassword {
     position: fixed;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
     padding: 2em;
-    top: 68%;
-}
-.coTRememberMeLabel {
-    color: white;
-    position: fixed;
-    padding: 2em;
-    left: 3%;
-    width: "40%";
-    top: 80%;
+    top: 345px;
 }
 .coTRememberMe {
-    color: white;
+    color: #4d4d4d;
+    background-color: #252525;
     position: fixed;
-    top: 79%;
-    left: 5%;
-}
-.coTRememberMe label {
-    color: white;
-    top: 77%;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    top: 490px;
+    width: 80%;
+    horisontal-align: center;
 }
 .coTLoginButton {
+    color: white;
+    background-color: #2a6602;
     position: fixed;
     padding: 2em;
-    left: 25%;
-    top: 85%;
+    top: 550px;
+    horisontal-align: center;
+    width: 80%;
 }

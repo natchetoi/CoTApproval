@@ -1,22 +1,18 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="cot.controller.Login"
-	xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="cot.controller.Login">
 	<App>
 		<pages>
 			<Page class="coTLoginView" showSubHeader="false" showHeader="false" enableScrolling="false">
 				<content>
 					<Link id="__link0"/>
-					<Label text="User Name" id="__label0" class="coTUserNameLabel"/>
-					<Input width="100%" id="username" value="testweb2" class="coTUserName"/>
-					<Label text="Password" id="__label1" class="coTPasswordLabel"/>
-					<Input width="100%" id="password" value="toronto" type="Password" class="coTPassword"/>
-					<HBox>
-						<CheckBox id="__box0" text="Remember me" class="coTRememberMe"/>
-					</HBox>
+					<!-- Label text="Username" id="__label0" class="coTUserNameLabel"/ -->
+					<Input width="80%" id="username" value="testweb2" class="coTUserName" textAlign="Begin"/>
+					<!-- Label text="Password" id="__label1" class="coTPasswordLabel"/ -->
+					<Input width="80%" id="password" value="toronto" type="Password" class="coTPassword"/>
 					<HBox width="100%" id="__hbox0" alignContent="Center" alignItems="Center">
 						<items>
 							<core:InvisibleText text="InvisibleText" id="__text0" width="100px"/>
-							<Button width="50%" text="Login"  id="loginButtonId" activeIcon="sap-icon://log" icon="sap-icon://log" press="onLogin"
-								class="coTLoginButton" type="Emphasized"/>
+							<Button width="80%" text="Remember me" id="rememberMeButtonId" press="onRemember" class="coTRememberMe" align="center" type="Transparent"/>
+							<Button width="80%" text="Sign in" id="loginButtonId" press="onLogin" class="coTLoginButton" type="Accept" align="center"/>
 						</items>
 					</HBox>
 				</content>

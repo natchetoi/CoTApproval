@@ -187,6 +187,10 @@ sap.ui.define([
             //	   	  this.getRouter().navTo("mymeetings", {}, true );
 
         },
+        
+        onRemember: function( oEvent) {
+        	
+        },
 
         login: function (userName) {
             this.loadRequests(userName);
