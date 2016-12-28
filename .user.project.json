@@ -13,9 +13,28 @@
       "backendSystem": [],
       "_metadata": {
         "runnerId": "webapprunner",
+        "id": 9184588,
+        "displayName": "Run index.html 1",
+        "lastRunTimeStamp": 1482942785851
+      }
+    },
+    {
+      "filePath": "/webapp/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
         "id": 5952383,
+        "runnerId": "webapprunner",
         "displayName": "Run index.html",
-        "lastRunTimeStamp": 1482498839807
+        "lastRunTimeStamp": 1482942092379,
+        "hasIssues": true
       }
     },
     {
@@ -30,8 +49,8 @@
       "hashParameter": "",
       "backendSystem": [],
       "_metadata": {
-        "runnerId": "webapprunner",
         "id": 8420264,
+        "runnerId": "webapprunner",
         "displayName": "Run test.html",
         "lastRunTimeStamp": 1482445768497
       }

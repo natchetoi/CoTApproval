@@ -8,23 +8,26 @@
     background-size: contain;
     background-size: 100% 100%;
 }
-.coTUserName {
+.coTUserName input {
     position: fixed;
     border-radius: 25px;
-    border: 2px solid #73AD21;
-    padding: 2em;
-    top: 274px;
-}
-.coTUserName input {
     background-color: #252525;
     color: white;
-	
-}
-.coTPassword {
-    position: fixed;
-    border-radius: 25px;
     border: 2px solid #73AD21;
     padding: 2em;
+    left: 33px;
+    top: 274px;
+}
+.coTPassword input {
+    position: fixed;
+    border-radius: 25px;
+    background-color: #252525;
+    color: white;
+    border: 2px solid #73AD21;
+    padding: 2em;
+    left: 33px;
+    padding: 2em;
+    left: 33px;
     top: 345px;
 }
 .coTRememberMe {
@@ -34,15 +37,16 @@
     border-radius: 25px;
     border: 2px solid #73AD21;
     top: 490px;
+    left: 33px;
     width: 80%;
     horisontal-align: center;
 }
-.coTLoginButton {
+.coTLoginButton span {
     color: white;
     background-color: #2a6602;
     position: fixed;
     padding: 2em;
-    top: 550px;
     horisontal-align: center;
     width: 80%;
+    left: 33px;
 }
