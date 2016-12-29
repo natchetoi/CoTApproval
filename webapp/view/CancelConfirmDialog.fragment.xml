@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="dialogBox" title="Confirmation" type="Message">
+		<Text id="dialogText" text="{i18n>confirmCancel}"/>
+		<beginButton>
+			<Button text="Yes" type="Accept" press="confirmCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="No" type="Reject" press="closeCancelConfirmDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

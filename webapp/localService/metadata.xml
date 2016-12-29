@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Approvals">
+            <EntityType Name="ApprovalReq">
+                <Key>
+                    <PropertyRef Name="RequestID"/>
+                </Key>
+                <Property Name="RequestID" Nullable="false" Type="Edm.String"/>
+                <Property Name="requester" Type="Edm.String"/>
+                <Property Name="approvalSubject" Type="Edm.String"/>
+                <Property Name="approver" Type="Edm.String"/>
+                <Property Name="approvalId" Type="Edm.String"/>
+                <Property Name="ApprovalSummary" Type="Edm.String"/>
+                <Property Name="approvalType" Type="Edm.String"/>
+                <Property Name="approvalStatus" Type="Edm.String"/>
+                <Property Name="errorCode" Type="Edm.String"/>
+                <Property Name="errorDescription" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_ApprovalReq" Name="ApproveAction" Relationship="Approvals.ApprovalReqApproveAction" ToRole="To_Action"/>
+            </EntityType>
+            <EntityType Name="ApprovalResp">
+                <Key>
+                    <PropertyRef Name="ResponseID"/>
+                </Key>
+                <Property Name="ResponseID" Nullable="false" Type="Edm.String"/>
+                <Property Name="UPDATED" Type="Edm.String"/>
+                <Property Name="STATUS" Type="Edm.String"/>
+                <Property Name="ErrorCode" Type="Edm.String"/>
+                <Property Name="ErrorDescription" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="ApproveAction">
+                <Key>
+                    <PropertyRef Name="ApproveActionID"/>
+                </Key>
+                <Property Name="ApproveActionID" Nullable="false" Type="Edm.String"/>
+                <Property Name="Action" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_Action" Name="ApprovalRespSet" Relationship="Approvals.ApproveActionApprovalResp" ToRole="To_ApprovalResp"/>
+            </EntityType>
+            <Association Name="ApprovalReqApproveAction">
+                <End Multiplicity="1" Role="From_ApprovalReq" Type="Approvals.ApprovalReq"/>
+                <End Multiplicity="0..1" Role="To_Action" Type="Approvals.ApproveAction"/>
+            </Association>
+            <Association Name="ApproveActionApprovalResp">
+                <End Multiplicity="1" Role="From_Action" Type="Approvals.ApproveAction"/>
+                <End Multiplicity="0..1" Role="To_ApprovalResp" Type="Approvals.ApprovalResp"/>
+            </Association>
+            <EntityContainer Name="default" m:IsDefaultEntityContainer="true">
+                <EntitySet EntityType="Approvals.ApprovalReq" Name="ApprovalReqSet"/>
+                <EntitySet EntityType="Approvals.ApprovalResp" Name="ApprovalRespSet"/>
+                <EntitySet EntityType="Approvals.ApproveAction" Name="ApproveActionSet"/>
+                <AssociationSet Association="Approvals.ApprovalReqApproveAction" Name="ApprovalReqApproveActionSet">
+                    <End EntitySet="ApprovalReqSet" Role="From_ApprovalReq"/>
+                    <End EntitySet="ApproveActionSet" Role="To_Action"/>
+                </AssociationSet>
+                <AssociationSet Association="Approvals.ApproveActionApprovalResp" Name="ApproveActionApprovalRespSet">
+                    <End EntitySet="ApproveActionSet" Role="From_Action"/>
+                    <End EntitySet="ApprovalRespSet" Role="To_ApprovalResp"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

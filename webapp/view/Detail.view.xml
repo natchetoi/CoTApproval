@@ -1,0 +1,21 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="cot.controller.Detail">
+	<Page id="detailPage" showNavButton="{device>/isPhone}" navButtonPress="onNavBack" class="sapUiFioriObjectPage" title="{i18n>detailTitle}">
+		<headerContent>
+			<core:Icon id="detailIcon" src="sap-icon://alert" visible="{parts:[{path:'device>/isOffline'}, {path:'device>/isPhone'}], formatter:'.onlineIconVisible'}"/>
+		</headerContent>
+		<content/>
+		<footer>
+			<Toolbar id="detailToolbar">
+				<content>
+					<Button id="cancelButton" press="cancelEdit" icon="sap-icon://sys-cancel"/>
+					<ToolbarSpacer id="toolbarSpacer"/>
+					<Button text="Reject" width="100px" id="__button1" icon="sap-icon://decline" type="Reject"/>
+					<Button text="Approve" width="100px" id="__button0" icon="sap-icon://accept" type="Accept"/>
+					<!-- Button id="saveButton" press="saveChanges" icon="sap-icon://save"/>
+					<Button id="deleteButton" press="deleteItem" icon="sap-icon://delete"/>
+					<Button id="editButton" press="editItem" icon="sap-icon://edit"/  -->
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

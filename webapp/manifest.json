@@ -1,0 +1,197 @@
+{
+  "_version": "1.1.0",
+  "sap.app": {
+    "_version": "1.1.0",
+    "id": "cot",
+    "type": "application",
+    "resources": "resources.json",
+    "i18n": "i18n/messageBundle.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "ach": "ach",
+    "dataSources": {
+      "mainService": {
+        "uri": "/here/goes/your/serviceurl/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/metadata.xml"
+        }
+      }
+    },
+    "offline": true,
+    "sourceTemplate": {
+      "id": "fioritemplate.UI5masterDetailKapselOffline",
+      "version": "1.32.4"
+    }
+  },
+  "sap.ui": {
+    "_version": "1.1.0",
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://detail-view",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "supportedThemes": [
+      "sap_hcb",
+      "sap_bluecrystal"
+    ]
+  },
+  "sap.ui5": {
+    "_version": "1.1.0",
+    "rootView": {
+      "viewName": "cot.view.App",
+      "type": "XML",
+      "id": "app"
+    },
+    "resources": {
+      "js": [
+        {
+          "uri": "libs/date.js"
+        },
+        {
+          "uri": "libs/en-US.js"
+        },
+        {
+          "uri": "libs/linq.min.js"
+        }
+      ]
+    },
+    "dependencies": {
+      "minUI5Version": "1.30.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "cot.i18n.messageBundle"
+        }
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "cot.MyRouter",
+        "viewType": "XML",
+        "viewPath": "cot.view",
+        "targetAggregation": "detailPages",
+        "clearTarget": false,
+        "viewLevel": 1
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "Splash",
+          "view": "Splash",
+          "targetAggregation": "masterPages",
+          "targetControl": "idAppControl",
+          "subroutes": [
+            {
+              "pattern": "Login",
+              "name": "Login1",
+              "view": "Login",
+              "transition": "show"
+            }
+          ]
+        },
+        {
+          "pattern": "Login",
+          "name": "Login",
+          "view": "Login",
+          "targetAggregation": "masterPages",
+          "targetControl": "idAppControl",
+          "subroutes": [
+            {
+              "pattern": "Master",
+              "name": "Master1",
+              "view": "Master",
+              "transition": "show"
+            }
+          ]
+        },
+        {
+          "pattern": "Master",
+          "name": "Master",
+          "view": "Master",
+          "targetAggregation": "masterPages",
+          "targetControl": "idAppControl",
+          "subroutes": [
+            {
+              "pattern": "{entity}/:tab:",
+              "name": "detail",
+              "view": "Detail"
+            }
+          ]
+        },
+        {
+          "name": "catchallMaster",
+          "view": "Master",
+          "targetAggregation": "masterPages",
+          "targetControl": "idAppControl",
+          "subroutes": [
+            {
+              "pattern": ":all*:",
+              "name": "catchallDetail",
+              "view": "NotFound",
+              "transition": "show"
+            }
+          ]
+        }
+      ],
+      "targets": {
+        "Master1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearAggregation": true,
+          "viewName": "Master",
+          "title": "Master",
+          "viewLevel": 1,
+          "viewId": "Master"
+        },
+        "Detail1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearAggregation": true,
+          "viewName": "Detail",
+          "title": "Detail",
+          "viewId": "Detail",
+          "viewLevel": 2,
+          "controlId": "idAppControl"
+        }
+      }
+    }
+  },
+  "sap.mobile": {
+    "_version": "1.1.0",
+    "definingRequests": {
+      "ApprovalReqSet": {
+        "dataSource": "mainService",
+        "path": "/ApprovalReqSet?$expand=ApproveAction"
+      }
+    }
+  },
+  "sap.platform.hcp": {
+    "uri": "webapp",
+    "_version": "1.1.0"
+  }
+}

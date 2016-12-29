@@ -1,0 +1,52 @@
+.spacerTop {
+    margin-top: 2rem;
+}
+.coTLoginView {
+    background-image: url("../images/login2.png");
+    background-repeat: no-repeat;
+    background-color: #252525;
+    background-size: contain;
+    background-size: 100% 100%;
+}
+.coTUserName input {
+    position: fixed;
+    border-radius: 25px;
+    background-color: #252525;
+    color: white;
+    border: 2px solid #73AD21;
+    padding: 2em;
+    left: 33px;
+    top: 274px;
+}
+.coTPassword input {
+    position: fixed;
+    border-radius: 25px;
+    background-color: #252525;
+    color: white;
+    border: 2px solid #73AD21;
+    padding: 2em;
+    left: 33px;
+    padding: 2em;
+    left: 33px;
+    top: 345px;
+}
+.coTRememberMe {
+    color: #4d4d4d;
+    background-color: #252525;
+    position: fixed;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    top: 490px;
+    left: 33px;
+    width: 80%;
+    horisontal-align: center;
+}
+.coTLoginButton span {
+    color: white;
+    background-color: #2a6602;
+    position: fixed;
+    padding: 2em;
+    horisontal-align: center;
+    width: 80%;
+    left: 33px;
+}
