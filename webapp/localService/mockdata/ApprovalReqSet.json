@@ -9,6 +9,7 @@
 }, {	
 	"RequestID": "1",
 	"requester": "Yuri Natchetoi",
+	"priority": "1",
 	"approvalSubject": "HP SM software upgrade to new version",
 	"approver": "Johan Macedo",
 	"approvalId": "1",
@@ -18,6 +19,7 @@
 }, {
 	"RequestID": "2",
 	"requester": "Ishay Freedman",
+	"priority": "2",
 	"approvalSubject": "Install Service pack 4 on SMP 3 server",
 	"approver": "Johan Macedo",
 	"approvalId": "2",
@@ -27,6 +29,7 @@
 }, {
 	"RequestID": "3",
 	"requester": "Marco Palermo",
+	"priority": "3",
 	"approvalSubject": "Develop approval application for Managers",
 	"approver": "Johan Macedo",
 	"approvalId": "3",
@@ -45,24 +48,27 @@
 	"RequestID": "104",
 	"approvalSubject": "Access to MH 15th floor for George Liu ",
 	"requester": "George Liu ",
+	"priority": "1",
 	"approver": "Johan Macedo",
 	"approvalId": "4",
 	"ApprovalSummary": "Access to MH 15th floor for George Liu ",
 	"approvalType": "SEC"
 }, {
 	"RequestID": "105",
+	"requester": "Paul Gill",
+	"priority": "2",
+	"approver": "Johan Macedo",
 	"approvalId": "5",
 	"approvalSubject": "Access to MH 1st  floor for Paul Gill",
 	"ApprovalSummary": "Access to MH 1st  floor for Paul Gill",
-	"approvalType": "SEC",
-	"approver": "Johan Macedo",
-	"requester": "Paul Gill"
+	"approvalType": "SEC"
 }, {
 	"RequestID": "106",
 	"approvalId": "6",
-	"approvalType": "SEC",
+	"requester": "William She",
+	"priority": "3",
 	"ApprovalSummary": "Access to 200 Wellington 16th floor for William She",
 	"approvalSubject": "Access to 200 Wellington 16th floor for William She",
-	"requester": "William She",
-	"approver": "Johan Macedo"
+	"approver": "Johan Macedo",
+	"approvalType": "SEC"
 }]

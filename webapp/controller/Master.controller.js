@@ -392,6 +392,11 @@ sap.ui.define([
 
         onApprove: function (e) {
             this.setStatus("approved");
+        },
+        
+        onApproveAll: function (e) {
+        	//
+            this.setStatus("approved");
         }
     });
 });

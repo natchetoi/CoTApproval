@@ -1,3 +1,9 @@
+.sapMHeader-CTX {
+    background-color:  #252525;
+}
+.sapMBar-CTX {
+    background-color:  #252525;
+}
 .spacerTop {
     margin-top: 2rem;
 }
@@ -7,6 +13,8 @@
     background-color: #252525;
     background-size: contain;
     background-size: 100% 100%;
+
+
 }
 .coTUserName input {
     position: fixed;
@@ -26,8 +34,6 @@
     border: 2px solid #73AD21;
     padding: 2em;
     left: 33px;
-    padding: 2em;
-    left: 33px;
     top: 345px;
 }
 .coTRememberMe {
@@ -36,17 +42,45 @@
     position: fixed;
     border-radius: 25px;
     border: 2px solid #73AD21;
-    top: 490px;
+    padding: 2em;
     left: 33px;
-    width: 80%;
-    horisontal-align: center;
+    top: 490px;
 }
 .coTLoginButton span {
-    color: white;
+    color: #4d4d4d;
     background-color: #2a6602;
     position: fixed;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
     padding: 2em;
-    horisontal-align: center;
-    width: 80%;
     left: 33px;
+    width: 80;
+    top: 550px;
+}
+.coTListScreen {
+    background-color: #252525;
+    background-image: url("../images/login2.png");
+}
+.coTAppRequest {
+    color: white;
+    background-color: #4d4d4d;
+	
+}
+.coTAppRequest div {
+    color: white;
+    background-color: #4d4d4d;
+	
+}
+.coTAppRequest img {
+	width: 18px;
+	height: 46px;
+}
+.coTApproveBtn {
+    background-image: url("../images/coTApproveBtn.png");
+}
+.coTDeclineeBtn {
+    background-image: url("../images/coTDeclineBtn.png");
+}
+.coTApproveAll {
+    background-image: url("../images/coTDeclineBtn.png");
 }

@@ -1,6 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:unified="sap.ui.unified"
-          xmlns:l="sap.ui.layout"
-          controllerName="cot.controller.Master" displayBlock="true">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:unified="sap.ui.unified" xmlns:l="sap.ui.layout" controllerName="cot.controller.Master" displayBlock="true">
     <Page id="page" title="{i18n>masterTitle}">
         <headerContent>
             <core:Icon id="masterIcon" src="sap-icon://alert" visible="{device>/isOffline}"/>
@@ -8,31 +6,19 @@
         <subHeader>
             <Bar id="searchBar">
                 <contentMiddle>
-                    <SearchField id="searchField" showRefreshButton="{device>/isNoTouch}"
-                                 placeholder="{i18n>masterSearchPlaceholder}" search="onSearch"
-                                 tooltip="{i18n>masterSearchTooltip}" width="100%"/>
+                    <SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" search="onSearch" tooltip="{i18n>masterSearchTooltip}" width="100%"/>
                 </contentMiddle>
             </Bar>
         </subHeader>
         <content>
-            <List id="list" items="{requests>/}" select="onSelect"
-                  mode="{device>/listMode}"
-                  noDataText="{i18n>masterListNoDataText}">
-
-                    <StandardListItem type="{device>listItemType}"
-                                      title="{requests>approvalSubject}"
-                                      description="{requests>ApprovalSummary}"/>
+    	        <Image width="18px" height="46px" id="__image0"/>
+	            <List id="list" items="{requests>/}" select="onSelect" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" >
+                    <StandardListItem type="{device>listItemType}" title="{requests>approvalSubject}" description="" 
+                    		icon="images/{requests>priority}.png" iconDensityAware="false" iconInset="false" class="coTAppRequest" />
                 <swipeContent>
                     <l:HorizontalLayout>
-                        <Button
-                                text="Reject"
-                                type="Reject"
-                                press="onReject"/>
-                        <Button
-                                text="Approve"
-                                type="Accept"
-                                press="onApprove"/>
-
+                        <Button text="" type="Reject" class="coTApproveBtn"  press="onReject" />
+                        <Button text="" type="Accept" class="coTDeclineeBtn" press="onApprove"/>
                     </l:HorizontalLayout>
                 </swipeContent>
             </List>
@@ -40,10 +26,9 @@
         <footer>
             <Toolbar>
                 <content>
-                    <Button icon="sap-icon://error" text="{device>/errorNum}"
-                            visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}"
-                            press="onErrorPress"/>
+                    <Button icon="sap-icon://error" text="{device>/errorNum}" visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}" press="onErrorPress"/>
                     <Button icon="sap-icon://refresh" press="onRefreshData"/>
+                    <Button class="coTApproveAll" press="onApproveAll"/>
                     <ToolbarSpacer/>
                     <!-- Button icon="sap-icon://add" press="addItem"></Button -->
                 </content>

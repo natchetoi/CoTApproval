@@ -5,9 +5,9 @@
 				<content>
 					<Link id="__link0"/>
 					<!-- Label text="Username" id="__label0" class="coTUserNameLabel"/ -->
-					<Input width="80%" id="username" value="testweb2" class="coTUserName" textAlign="Begin"/>
+					<Input width="80%" id="username" value="testweb2"  textAlign="Begin" class="coTUserName" />
 					<!-- Label text="Password" id="__label1" class="coTPasswordLabel"/ -->
-					<Input width="80%" id="password" value="toronto" type="Password" class="coTPassword"/>
+					<Input width="80%" id="password" value="toronto" type="Password" class="coTPassword" />
 					<HBox width="100%" id="__hbox0" alignContent="Center" alignItems="Center">
 						<items>
 							<core:InvisibleText text="InvisibleText" id="__text0" width="100px"/>
