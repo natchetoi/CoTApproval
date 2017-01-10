@@ -2,6 +2,7 @@
 	"RequestID": "0",
 	"approvalSubject": "CAB",
 	"requester": "",
+	"priority": "11",
 	"approver": "",
 	"approvalId": "4",
 	"ApprovalSummary": "Change Advisory Board",
@@ -38,8 +39,9 @@
 	"approvalStatus": ""
 }, {
 	"RequestID": "100",
-	"approvalSubject": "Security",
+	"approvalSubject": "SECURITY",
 	"requester": "",
+	"priority": "12",
 	"approver": "",
 	"approvalId": "4",
 	"ApprovalSummary": "Physical security authorizations",
@@ -64,9 +66,27 @@
 	"approvalType": "SEC"
 }, {
 	"RequestID": "106",
+	"requester": "Paul Gill",
+	"priority": "2",
+	"approver": "Johan Macedo",
+	"approvalId": "6",
+	"approvalSubject": "Access to CH 7th floor for Paul Gill",
+	"ApprovalSummary": "Access to CH 7th floor for Paul Gill",
+	"approvalType": "SEC"
+}, {
+	"RequestID": "107",
+	"requester": "Paul Gill",
+	"priority": "3",
+	"approver": "Johan Macedo",
+	"approvalId": "7",
+	"approvalSubject": "Parking permit for CH for Paul Gill",
+	"ApprovalSummary": "Parking permit for CH for Paul Gill",
+	"approvalType": "SEC"
+}, {
+	"RequestID": "108",
 	"approvalId": "6",
 	"requester": "William She",
-	"priority": "3",
+	"priority": "8",
 	"ApprovalSummary": "Access to 200 Wellington 16th floor for William She",
 	"approvalSubject": "Access to 200 Wellington 16th floor for William She",
 	"approver": "Johan Macedo",

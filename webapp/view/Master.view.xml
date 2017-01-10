@@ -3,22 +3,21 @@
         <headerContent>
             <core:Icon id="masterIcon" src="sap-icon://alert" visible="{device>/isOffline}"/>
         </headerContent>
-        <subHeader>
-            <Bar id="searchBar">
+        <subHeader visible="false">
+            <Bar id="searchBar" visible="false">
                 <contentMiddle>
                     <SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" search="onSearch" tooltip="{i18n>masterSearchTooltip}" width="100%"/>
                 </contentMiddle>
             </Bar>
         </subHeader>
         <content>
-    	        <Image width="18px" height="46px" id="__image0"/>
-	            <List id="list" items="{requests>/}" select="onSelect" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" >
+	            <List id="list" items="{requests>/}" select="onSelect" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}">
                     <StandardListItem type="{device>listItemType}" title="{requests>approvalSubject}" description="" 
-                    		icon="images/{requests>priority}.png" iconDensityAware="false" iconInset="false" class="coTAppRequest" />
+                          icon="images/{requests>priority}.png" iconDensityAware="false" iconInset="true" class="coTAppRequest"/>
                 <swipeContent>
                     <l:HorizontalLayout>
-                        <Button text="" type="Reject" class="coTApproveBtn"  press="onReject" />
-                        <Button text="" type="Accept" class="coTDeclineeBtn" press="onApprove"/>
+                        <Button text="" type="Reject" class="coTApproveBtn" press="onReject" icon="images/declineImg.png" width="145px"/>
+                        <Button text="" type="Accept" class="coTDeclineeBtn" press="onApprove" icon="images/approveImg.png" width="145px"/>
                     </l:HorizontalLayout>
                 </swipeContent>
             </List>
@@ -26,10 +25,14 @@
         <footer>
             <Toolbar>
                 <content>
-                    <Button icon="sap-icon://error" text="{device>/errorNum}" visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}" press="onErrorPress"/>
-                    <Button icon="sap-icon://refresh" press="onRefreshData"/>
-                    <Button class="coTApproveAll" press="onApproveAll"/>
-                    <ToolbarSpacer/>
+                  <Button icon="sap-icon://error" text="{device>/errorNum}" visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}" press="onErrorPress"/>
+                  <l:HorizontalLayout>
+                    <Button class="coTLogout" press="onLogout" icon="images/logout.png" width="115px"/>
+                    <Button class="coTSearch" press="onSearch" icon="images/search.png" width="104px"/>
+                    <Button class="coTApproveAll" press="onApproveAll" icon="images/approveAll.png" width="166px"/>
+                    <!-- Button class="coTMore" press="onMore"/ -->
+                    <Button press="onRefreshData" icon="images/more.png" width="76px"/>
+                  </l:HorizontalLayout>
                     <!-- Button icon="sap-icon://add" press="addItem"></Button -->
                 </content>
             </Toolbar>

@@ -168,7 +168,7 @@ sap.ui.define([
          * 'refresh' button has been pressed, no new search is triggered
          * and the list binding is refresh instead.
          */
-        onSearch: function () {
+        onSearchFor: function () {
             // add filter for search
             var filters = [];
             var searchString = this.getView().byId("searchField").getValue();
@@ -393,10 +393,19 @@ sap.ui.define([
         onApprove: function (e) {
             this.setStatus("approved");
         },
-        
+        onLogout: function (e) {
+	            this.setStatus("approved");
+        },
+        onMore: function (e) {
+            this.setStatus("approved");
+        },
+        onSearch: function (e) {
+            this.setStatus("approved");
+        },
         onApproveAll: function (e) {
         	//
             this.setStatus("approved");
         }
+        
     });
 });

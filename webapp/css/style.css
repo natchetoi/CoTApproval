@@ -7,6 +7,11 @@
 .spacerTop {
     margin-top: 2rem;
 }
+
+.sapMBtnIcon {
+  width: 145px;
+}
+
 .coTLoginView {
     background-image: url("../images/login2.png");
     background-repeat: no-repeat;
@@ -72,8 +77,8 @@
 	
 }
 .coTAppRequest img {
-	width: 18px;
-	height: 46px;
+	width: 21px;
+	height: 21px;
 }
 .coTApproveBtn {
     background-image: url("../images/coTApproveBtn.png");
