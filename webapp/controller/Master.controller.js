@@ -385,7 +385,18 @@ sap.ui.define([
 
             self.loadRequests();
         },
-
+		buildItemList: function() {
+            var model = sap.ui.getCore().getModel(self.modelName);
+            var data = model.getData();
+			var list = this.getView().byId("list");
+			var n = list.length;
+			for(var i=0; i<n; i++)  {
+				var id = "Item" + i;
+				var request = data[i];
+				var item = new sap.m.StandardListItem(id, []);
+//				item. = request
+			}
+    	},
         onReject: function (e) {
             this.setStatus("rejected");
         },

@@ -12,12 +12,12 @@
         </subHeader>
         <content>
 	            <List id="list" items="{requests>/}" select="onSelect" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}">
-                    <StandardListItem type="{device>listItemType}" title="{requests>approvalSubject}" description="" 
+                      <StandardListItem type="{device>listItemType}" title="{requests>approvalSubject}" description="" 
                           icon="images/{requests>priority}.png" iconDensityAware="false" iconInset="true" class="coTAppRequest"/>
                 <swipeContent>
                     <l:HorizontalLayout>
                         <Button text="" type="Reject" class="coTApproveBtn" press="onReject" icon="images/declineImg.png" width="145px"/>
-                        <Button text="" type="Accept" class="coTDeclineeBtn" press="onApprove" icon="images/approveImg.png" width="145px"/>
+                        <Button text="" type="Accept" class="coTDeclineBtn" press="onApprove" icon="images/approveImg.png" width="145px"/>
                     </l:HorizontalLayout>
                 </swipeContent>
             </List>
@@ -27,11 +27,10 @@
                 <content>
                   <Button icon="sap-icon://error" text="{device>/errorNum}" visible="{parts:[{path:'device>/errorNum'}], formatter:'.onErrorBTVisible'}" press="onErrorPress"/>
                   <l:HorizontalLayout>
-                    <Button class="coTLogout" press="onLogout" icon="images/logout.png" width="115px"/>
-                    <Button class="coTSearch" press="onSearch" icon="images/search.png" width="104px"/>
-                    <Button class="coTApproveAll" press="onApproveAll" icon="images/approveAll.png" width="166px"/>
-                    <!-- Button class="coTMore" press="onMore"/ -->
-                    <Button press="onRefreshData" icon="images/more.png" width="76px"/>
+                    <Image class="coTLogout" press="onLogout" src="images/logout.png" width="115px"/>
+                    <Image class="coTSearch" press="onSearch" src="images/search.png" width="104px"/>
+                    <Image class="coTApproveAll" press="onApproveAll" src="images/approveAll.png" width="166px"/>
+                    <Image class="coTMore" press="onRefreshData" src="images/more.png" width="76px"/>
                   </l:HorizontalLayout>
                     <!-- Button icon="sap-icon://add" press="addItem"></Button -->
                 </content>

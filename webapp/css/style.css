@@ -9,7 +9,6 @@
 }
 
 .sapMBtnIcon {
-  width: 145px;
 }
 
 .coTLoginView {
@@ -83,9 +82,26 @@
 .coTApproveBtn {
     background-image: url("../images/coTApproveBtn.png");
 }
-.coTDeclineeBtn {
+.coTDeclineBtn {
     background-image: url("../images/coTDeclineBtn.png");
 }
 .coTApproveAll {
-    background-image: url("../images/coTDeclineBtn.png");
+/*    background-image: url("../images/coTDeclineBtn.png"); */
+    width: 166px;
+    height: 80px;
+}
+.coTLogout  {
+/*    background-image: url("../images/coTDeclineBtn.png"); */
+    width: 115px;
+    height: 80px;
+}
+.coTSearch {
+/*    background-image: url("../images/coTDeclineBtn.png"); */
+    width: 104px;
+    height: 80px;
+}
+.coTMore {
+/*    background-image: url("../images/coTDeclineBtn.png"); */
+    width: 76px;
+    height: 80px;
 }
