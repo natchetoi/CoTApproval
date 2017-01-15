@@ -1,7 +1,7 @@
 {
   "run": [
     {
-      "filePath": "/webapp/index.html",
+      "filePath": "/www/index.html",
       "previewMode": 1,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -19,7 +19,7 @@
       }
     },
     {
-      "filePath": "/webapp/test.html",
+      "filePath": "/www/test.html",
       "previewMode": 1,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
