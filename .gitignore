@@ -15,3 +15,6 @@ mock_preview_sapui5.html
 .idea/
 resources/
 >>>>>>> 5c81feabb6731808473e111a8bc8c3682e25542d
+platforms/
+hooks/
+plugins/

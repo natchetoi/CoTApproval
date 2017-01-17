@@ -29,13 +29,13 @@ sap.ui.define([
 
 			if (window.cordova && !window.sap_webide_FacadePreview && !window.sap_webide_companion) {
 				if (devapp.devLogon) {
-					appContext = devapp.devLogon.appContext;
+					appContext = devapp.appContext;
 				}
 				sServiceUrl = appContext.applicationEndpointURL + "/";
 				var oHeader = {
 					"X-SMP-APPCID": appContext.applicationConnectionId
 				};
-				if (appContext.registrationContext.user) {
+				if (appContext.registrationContext && appContext.registrationContext.user) {
 					oHeader.Authorization = "Basic " + btoa(appContext.registrationContext.user + ":" + appContext.registrationContext.password);
 				}
 				param.headers = oHeader;
